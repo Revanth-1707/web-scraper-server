@@ -95,9 +95,39 @@ web-scraper-server/
    ```
 
 4. **If you need to scrape a new URL**:
-   - Rebuild the image with the new URL:
+   - Stop and remove existing container:
+     ```bash
+     docker stop web-scraper-container
+     docker rm web-scraper-container
+     ```
+   - Remove old image (recommended for clean slate):
+     ```bash
+     docker rmi web-scraper-server
+     ```
+   - Then run the container again
+     ```bash
+     docker run -d -p 5000:5000 web-scraper-server
+     ```
+   - Rebuild with new URL:
      ```bash
      docker build --build-arg SCRAPE_URL=https://new-url.com -t web-scraper-server .
      ```
-   - Then run the container again
 
+   - Run the updated container:
+     ```bash
+     docker run -d -p 5000:5000 --name web-scraper-container web-scraper-server
+     ```
+
+### Quick Rebuild (without removing old image):
+```bash
+docker build --no-cache --build-arg SCRAPE_URL=https://new-url.com -t web-scraper-server .
+docker run -d -p 5000:5000 web-scraper-server
+```
+
+---
+
+### 📬 Connect with Me  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white)](https://linkedin.com/in/revanth-l-3a5a18208)  
+[![GitHub](https://img.shields.io/badge/GitHub-black?logo=github&logoColor=white)](https://github.com/Revanth-1707)  
+📧 **Email:** revanthagastya373@gmail.com  
+📞 **Phone:** +91 9886294426  
