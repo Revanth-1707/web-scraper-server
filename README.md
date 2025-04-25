@@ -112,10 +112,7 @@ web-scraper-server/
      ```bash
      docker rmi web-scraper-server
      ```
-   - Then run the container again
-     ```bash
-     docker run -d -p 5000:5000 web-scraper-server
-     ```
+     
    - Rebuild with new URL:
      ```bash
      docker build --build-arg SCRAPE_URL=https://new-url.com -t web-scraper-server .
