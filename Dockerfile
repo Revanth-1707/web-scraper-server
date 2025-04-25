@@ -1,7 +1,7 @@
 # Stage 1: Node.js scraper stage
 FROM node:18-slim AS scraper
 
-# Install required dependencies for Chromium
+
 RUN apt-get update && \
     apt-get install -y wget gnupg && \
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
@@ -10,24 +10,24 @@ RUN apt-get update && \
     apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Configure Puppeteer
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 WORKDIR /app
 
-# Copy package files and install dependencies
+
 COPY package.json .
 RUN npm install
 
-# Copy scraper script
+
 COPY scrape.js .
 
-# Set default URL if none provided
+
 ARG SCRAPE_URL=https://example.com
 ENV SCRAPE_URL=$SCRAPE_URL
 
-# Run the scraper during build
+
 RUN node scrape.js
 
 # Stage 2: Python hosting stage
@@ -35,16 +35,16 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Copy scraped data from the scraper stage
+
 COPY --from=scraper /app/scraped_data.json .
 
-# Install Python dependencies
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy server script
+
 COPY server.py .
 
-# Expose port and run server
+
 EXPOSE 5000
 CMD ["python", "server.py"]
