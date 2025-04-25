@@ -43,11 +43,6 @@ After running the container, access the scraped data in JSON format at:
 http://localhost:5000
 ```
 
-Or via curl:
-```bash
-curl http://localhost:5000
-```
-
 ## 🧩 Project Structure
 
 ```
