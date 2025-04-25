@@ -124,7 +124,7 @@ docker build --no-cache --build-arg SCRAPE_URL=https://new-url.com -t web-scrape
 docker run -d -p 5000:5000 web-scraper-server
 ```
 
----
+-----
 
 ### 📬 Connect with Me  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white)](https://linkedin.com/in/revanth-l-3a5a18208)  
