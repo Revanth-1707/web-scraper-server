@@ -2,12 +2,10 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 (async () => {
-    // Get URL from environment variable
     const url = process.env.SCRAPE_URL || 'https://example.com';
     console.log(`Scraping URL: ${url}`);
 
     try {
-        // Launch browser
         const browser = await puppeteer.launch({
             headless: true,
             executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
@@ -16,10 +14,8 @@ const fs = require('fs');
         
         const page = await browser.newPage();
         
-        // Navigate to URL
         await page.goto(url, { waitUntil: 'networkidle2' });
-        
-        // Extract data
+
         const data = {
             url: url,
             title: await page.title(),
@@ -39,8 +35,7 @@ const fs = require('fs');
             }),
             scrapedAt: new Date().toISOString()
         };
-        
-        // Save data to file
+
         fs.writeFileSync('scraped_data.json', JSON.stringify(data, null, 2));
         console.log('Data scraped and saved to scraped_data.json');
         
