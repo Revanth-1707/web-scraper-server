@@ -14,7 +14,7 @@ This project demonstrates a Dockerized solution that:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/web-scraper-server.git
+   git clone [https://github.com/your-username/web-scraper-server.git](https://github.com/Revanth-1707/web-scraper-server.git)
    cd web-scraper-server
    ```
 
