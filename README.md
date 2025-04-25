@@ -93,8 +93,16 @@ web-scraper-server/
    ```bash
    docker stop <container-id>
    ```
+   
+4. Ensure Docker Desktop is running (check system tray)
 
-4. **If you need to scrape a new URL**:
+   - Verify installation:
+     ```bash
+     docker --version
+     docker run hello-world
+     ```
+   
+5. **If you need to scrape a new URL**:
    - Stop and remove existing container:
      ```bash
      docker stop web-scraper-container
